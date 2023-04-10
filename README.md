@@ -5,8 +5,11 @@ es un software que calcula el descuento se aplicará según sea el número de pr
 únicamente tres productos los cuales son todos camisas.
 
 __Interfaz de la aplicación:__
+
 ![](https://github.com/Eliteasdev/CamisasFX/blob/main/public/UI.png?raw=true)
+
 __Testing realizado:__
+
 ![](https://github.com/Eliteasdev/CamisasFX/blob/main/public/Testing.png?raw=true)
 __Nota:__ A la hora de realizar el testing con la librería de JUnit 5.9 el IDE lanzaba un error por incompatibilidad con
 el empaquetador, una solución temporal que encontré es eliminar el archivo __“module-info.java”__ del proyecto. Una vez
