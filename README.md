@@ -39,7 +39,6 @@ CamisasFX
 │   📁️.gradle    
 │   📁️.idea
 │   📁️build
-│   📁️public
 └───📁️public [Archivos para Readme en Github]
 |
 └───📁️src
