@@ -9,4 +9,6 @@ module fes.ico.camisasfx {
     exports fes.ico.camisasfx;
     exports fes.ico.camisasfx.controller;
     opens fes.ico.camisasfx.controller to javafx.fxml;
+
 }
+

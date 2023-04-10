@@ -2,10 +2,8 @@ package fes.ico.camisasfx.controller;
 
 import fes.ico.camisasfx.helpers.Operaciones;
 import fes.ico.camisasfx.helpers.Tipos;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 
@@ -13,9 +11,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class PrincipalController implements Initializable {
-
-    @FXML
-    private Button btnGenerar;
 
     @FXML
     private TextField tfdDescuentoCasualML;
@@ -67,13 +62,7 @@ public class PrincipalController implements Initializable {
 
     private int numeroMangaCorta = 0;
     private int numeroFormalMangaLarga = 0;
-
     private int numeroCasualMangaLarga = 0;
-
-    @FXML
-    void generarCSV(ActionEvent event) {
-
-    }
 
     @FXML
     void setDatosCasualMangaLarga(KeyEvent event) {
@@ -89,9 +78,9 @@ public class PrincipalController implements Initializable {
         } catch (Exception e) {
             numeroCasualMangaLarga = 0;
             tfdNumeroCasualML.setText("");
-            tfdPrecioListaCasualML.setText("");
-            tfdDescuentoCasualML.setText("");
-            tfdPrecioFinalCasualML.setText("");
+            tfdPrecioListaCasualML.setText("$0.0");
+            tfdDescuentoCasualML.setText("$0.0");
+            tfdPrecioFinalCasualML.setText("$0.0");
         }
         llenarTotal();
     }
@@ -110,9 +99,9 @@ public class PrincipalController implements Initializable {
         } catch (Exception e) {
             numeroFormalMangaLarga = 0;
             tfdNumeroFormalML.setText("");
-            tfdPrecioListaFormalML.setText("");
-            tfdDescuentoFormalML.setText("");
-            tfdPrecioFinalFormalML.setText("");
+            tfdPrecioListaFormalML.setText("$0.0");
+            tfdDescuentoFormalML.setText("$0.0");
+            tfdPrecioFinalFormalML.setText("$0.0");
         }
         llenarTotal();
     }
@@ -131,9 +120,9 @@ public class PrincipalController implements Initializable {
         } catch (Exception e) {
             numeroMangaCorta = 0;
             tfdNumeroMC.setText("");
-            tfdPrecioListaMC.setText("");
-            tfdDescuentoMC.setText("");
-            tfdPrecioFinalMC.setText("");
+            tfdPrecioListaMC.setText("$0.0");
+            tfdDescuentoMC.setText("$0.0");
+            tfdPrecioFinalMC.setText("$0.0");
         }
         llenarTotal();
     }
@@ -141,6 +130,7 @@ public class PrincipalController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         desabilitarElementos();
+        establecerValoresEnUI();
     }
 
     private void desabilitarElementos() {
@@ -159,12 +149,39 @@ public class PrincipalController implements Initializable {
         this.tfdTotalNumero.setEditable(false);
     }
 
+    private void establecerValoresEnUI() {
+
+        //Precio Lista
+        this.tfdPrecioListaMC.setText("$0.0");
+        this.tfdPrecioListaFormalML.setText("$0.0");
+        this.tfdPrecioListaCasualML.setText("$0.0");
+
+        // Descuento
+        this.tfdDescuentoCasualML.setText("$0.0");
+        this.tfdDescuentoFormalML.setText("$0.0");
+        this.tfdDescuentoMC.setText("$0.0");
+
+        //Precio Final
+        this.tfdPrecioFinalCasualML.setText("$0.0");
+        this.tfdPrecioFinalFormalML.setText("$0.0");
+        this.tfdPrecioFinalMC.setText("$0.0");
+
+        //Total
+        this.tfdTotalNumero.setText("0");
+        this.tfdTotalPrecioFinal.setText("$0.00");
+        this.tfdTotalDescuento.setText("$0.00");
+        this.tfdTotalPrecioLista.setText("$0.00");
+
+    }
+
     public void llenarTotal() {
         tfdTotalNumero.setText(Integer.toString(numeroMangaCorta + numeroCasualMangaLarga + numeroFormalMangaLarga));
         tfdTotalPrecioLista.setText("$" + calcularTotalPrecioLista());
+        tfdTotalDescuento.setText("$" + calcularTotalDesuento());
+        tfdTotalPrecioFinal.setText("$" + calcularTotalFinal());
     }
 
-    public String calcularTotalPrecioLista() {
+    private String calcularTotalPrecioLista() {
         float mangaCortaPrecioLista = 0.0f;
         float casualMangaLargaPrecioLista = 0.0f;
         float formalMangaLargaPrecioLista = 0.0f;
@@ -181,6 +198,46 @@ public class PrincipalController implements Initializable {
         }
 
         return Float.toString(mangaCortaPrecioLista + casualMangaLargaPrecioLista + formalMangaLargaPrecioLista);
+    }
+
+    private String calcularTotalDesuento() {
+        float mangaCortaDescuento = 0.0f;
+        float casualMangaLargaDescuento = 0.0f;
+        float formalMangaLargaDesuento = 0.0f;
+
+        if (!tfdDescuentoMC.getText().equals("")) {
+            mangaCortaDescuento = Float.parseFloat(tfdDescuentoMC.getText().replace("$", ""));
+        }
+
+        if (!tfdDescuentoCasualML.getText().equals("")) {
+            casualMangaLargaDescuento = Float.parseFloat(tfdDescuentoCasualML.getText().replace("$", ""));
+        }
+
+        if (!tfdDescuentoFormalML.getText().equals("")) {
+            formalMangaLargaDesuento = Float.parseFloat(tfdDescuentoFormalML.getText().replace("$", ""));
+        }
+
+        return Float.toString(mangaCortaDescuento + casualMangaLargaDescuento + formalMangaLargaDesuento);
+    }
+
+    private String calcularTotalFinal() {
+        float mangaCortaFinal = 0.0f;
+        float casualMangaLargaFinal = 0.0f;
+        float formalMangaLargaFinal = 0.0f;
+
+        if (!tfdPrecioFinalMC.getText().equals("") && !tfdPrecioFinalMC.getText().equals("$0.0")) {
+            mangaCortaFinal = Float.parseFloat(tfdPrecioFinalMC.getText().replace("$", ""));
+        }
+
+        if (!tfdPrecioFinalCasualML.getText().equals("") && !tfdPrecioFinalCasualML.getText().equals("$0.0")) {
+            casualMangaLargaFinal = Float.parseFloat(tfdPrecioFinalCasualML.getText().replace("$", ""));
+        }
+
+        if (!tfdPrecioFinalFormalML.getText().equals("") && !tfdPrecioFinalFormalML.getText().equals("$0.0")) {
+            formalMangaLargaFinal = Float.parseFloat(tfdPrecioFinalFormalML.getText().replace("$", ""));
+        }
+
+        return Float.toString(mangaCortaFinal + casualMangaLargaFinal + formalMangaLargaFinal);
     }
 
 }
