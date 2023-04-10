@@ -9,12 +9,11 @@ public class CamisasFXTesting {
 
     @Test
     @DisplayName("Test de la clase Enum [Descuentos]")
-    public void testTipos() {
+    public void testDescuentos() {
         //Este metodo comprueba que los Descuentos sean los establecidos en los requerimientos
         int[] limites = {2, 5, -1};
         // Se pone -1 porque es de 5 en adelante; si existiera un limite para aplicar este descuento estaria indicado en el tercer limite
         float[] porcentajesDescuento = {0.0f, 0.05f, 0.08f};
-
 
         int index = 0;
         for (Descuentos descuento : Descuentos.values()) {
@@ -24,8 +23,18 @@ public class CamisasFXTesting {
             Assertions.assertEquals(porcentajesDescuento[index], descuento.getDescuento());
             index++;
         }
+    }
 
-
+    @Test
+    @DisplayName("Test de la clase Enum [Tipos]")
+    public void testTipos() {
+        //Comprobamos que los precios sean los que se declararon en el documento de requerimientos
+        float[] tipos = {190.0f, 230.0f, 310.0f};
+        int index = 0;
+        for (Tipos tipo : Tipos.values()) {
+            Assertions.assertEquals(tipos[index], tipo.getPrecio());
+            index++;
+        }
     }
 
     @Test
