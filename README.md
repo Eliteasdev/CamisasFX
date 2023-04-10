@@ -26,6 +26,10 @@ git clone https://github.com/Eliteasdev/CamisasFX.git
 Una vez clonado el repositorio abre el archivo __“build.gradle”__ que se encuentra en la raíz del proyecto, hecho esto
 debes sincronizar el proyecto. Hecho esto se descargarán las librerías necesarias para poder modificarlo.
 
+### Diagrama de clases
+
+![](https://github.com/Eliteasdev/CamisasFX/blob/main/public/DiagramaDeClases.png?raw=true)
+
 ### Estructura del proyecto
 
 ~~~js
@@ -45,10 +49,6 @@ CamisasFX
 |   │   📁️main
 |   │   📁️test
 ~~~
-
-### Diagrama de clases
-
-![](https://github.com/Eliteasdev/CamisasFX/blob/main/public/DiagramaDeClases.png?raw=true)
 
 ### 🛠️Pre-requisitos
 
