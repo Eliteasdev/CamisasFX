@@ -46,6 +46,10 @@ CamisasFX
 |   │   📁️test
 ~~~
 
+### Diagrama de clases
+
+![](https://github.com/Eliteasdev/CamisasFX/blob/main/public/DiagramaDeClases.png?raw=true)
+
 ### 🛠️Pre-requisitos
 
 * [Intellij idea community](https://www.jetbrains.com/idea/)
